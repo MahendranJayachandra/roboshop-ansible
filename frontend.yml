@@ -17,21 +17,21 @@
         state: absent
         path: /usr/share/nginx/html
 
-    # - name: download and extract frontend application
-    #   ansible.builtin.unarchive:
-    #     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
-    #     dest: /usr/share/nginx/html
-    #     remote_src: yes
+    - name: download and extract frontend application
+      ansible.builtin.unarchive:
+        src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
 
-    # - name: copy the configuration file
-    #   ansible.builtin.copy:
-    #     src: roboshop.conf
-    #     dest: /etc/nginx/default.d/roboshop.conf
+    - name: copy the configuration file
+      ansible.builtin.copy:
+        src: roboshop.conf
+        dest: /etc/nginx/default.d/roboshop.conf
 
-    # - name: restart nginx service
-    #   ansible.builtin.service:
-    #     name: nginx
-    #     state: restarted
-    #     enabled: yes
+    - name: restart nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+        enabled: yes
 
     
