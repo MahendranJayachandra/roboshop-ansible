@@ -15,7 +15,7 @@
     - name: delete the existing files
       ansible.builtin.file:
         state: absent
-        path: /usr/share/nginx/html/*
+        path: /usr/share/nginx/html
 
     # - name: download and extract frontend application
     #   ansible.builtin.unarchive:
