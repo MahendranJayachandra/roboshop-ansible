@@ -9,7 +9,7 @@
 
     - name: install mongodb
       ansible.builtin.yum:
-        name: mongo-org
+        name: mongodb-org
         state: installed
 
     - name: search and replace in mongod.conf so other applications can access
