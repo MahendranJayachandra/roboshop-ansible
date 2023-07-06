@@ -33,4 +33,6 @@
     - name: Run the catalogue schema to update the data in mongodb
       community.mongodb.mongodb_shell:
         login_host: mongodb.learnskill.fun
+        mongo_cmd: mongo
+        quiet: false
         file: "/app/schema/catalogue.js"       
