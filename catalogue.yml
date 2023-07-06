@@ -1,7 +1,8 @@
 - name: setup catalogue application
   hosts: all
   become: yes
-
+  vars:
+    component: catalogue
   tasks:
     - name: Include nodejs file in catalogue
       ansible.builtin.include_tasks:
