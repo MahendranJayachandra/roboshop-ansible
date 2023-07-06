@@ -5,7 +5,7 @@
   tasks:
     - name: Include nodejs file in catalogue
       ansible.builtin.include_tasks:
-        file: stuff.yaml
+        file: nodejs.yml
 
     - name: run nodejs dependancy modules for catalogue application
       ansible.builtin.shell: npm install
