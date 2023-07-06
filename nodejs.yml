@@ -9,31 +9,31 @@
 # download setup file, install nodejs, create roboshop user, create app folder, 
 # download and extract application in app folder
 
-- name: nodejs setup
-  hosts: all
-  become: yes
-  vars:
-    component: catalogue
+# - name: nodejs setup
+#   hosts: all
+#   become: yes
+#   vars:
+#     component: catalogue
   
-  tasks:
-    - name: download nodejs setup file
-      ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+#   tasks:
+  - name: download nodejs setup file
+    ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-    - name: install nodejs
-      ansible.builtin.yum: nodejs
-      state: installed
+  - name: install nodejs
+    ansible.builtin.yum: nodejs
+    state: installed
 
-    - name: create roboshop user
-      ansible.builtin.user:
-        name: roboshop
+  - name: create roboshop user
+    ansible.builtin.user:
+      name: roboshop
 
-    - name: Create a directory if it does not exist
-      ansible.builtin.file:
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
         path: /app
         state: directory
 
-    - name: download and extract application
-      ansible.builtin.unarchive:
-        src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
-        dest: /app
-        remote_src: yes
+  - name: download and extract application
+    ansible.builtin.unarchive:
+      src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
+      dest: /app
+      remote_src: yes
