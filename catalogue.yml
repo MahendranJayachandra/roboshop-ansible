@@ -8,9 +8,6 @@
       ansible.builtin.include_tasks:
         file: nodejs.yml
 
-    - name: run nodejs dependancy modules for catalogue application
-      ansible.builtin.shell: npm install
-
     - name: copy the configuration file
       ansible.builtin.copy:
         src: catalogue.service
