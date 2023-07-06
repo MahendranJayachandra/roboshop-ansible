@@ -16,28 +16,28 @@
 #     component: catalogue
   
 #   tasks:
-  - name: download nodejs setup file
-    ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+- name: download nodejs setup file
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-  - name: install nodejs
-    ansible.builtin.yum: 
+- name: install nodejs
+  ansible.builtin.yum: 
       name: nodejs
       state: installed
 
-  - name: create roboshop user
-    ansible.builtin.user:
-      name: roboshop
+- name: create roboshop user
+  ansible.builtin.user:
+    name: roboshop
 
-  - name: Create a directory if it does not exist
-    ansible.builtin.file:
-        path: /app
-        state: directory
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /app
+    state: directory
 
-  - name: download and extract application
-    ansible.builtin.unarchive:
-      src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
-      dest: /app
-      remote_src: yes
+- name: download and extract application
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
+    dest: /app
+    remote_src: yes
 
-   - name: run nodejs dependancy modules for catalogue application
-      ansible.builtin.shell: npm install
+- name: run nodejs dependancy modules for catalogue application
+  ansible.builtin.shell: npm install
