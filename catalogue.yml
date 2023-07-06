@@ -1,28 +1,28 @@
-name: setup catalogue application
-hosts: all
-become: yes
+- name: setup catalogue application
+  hosts: all
+  become: yes
 
-tasks:
-  - name: Include nodejs file in catalogue
+  tasks:
+    - name: Include nodejs file in catalogue
       ansible.builtin.include_tasks:
         file: stuff.yaml
 
-  - name: run nodejs dependancy modules for catalogue application
-    ansible.builtin.shell: npm install
+    - name: run nodejs dependancy modules for catalogue application
+      ansible.builtin.shell: npm install
 
-  - name: copy the configuration file
-       ansible.builtin.copy:
+    - name: copy the configuration file
+      ansible.builtin.copy:
         src: catalogue.service
         dest: /etc/systemd/system/catalogue.service
 
-  - name: reload the service so that server reads if any changes are done,restart catalogue
-    ansible.builtin.systemd:
-      state: restarted
-      daemon_reload: true
-      name: catalogue
-      enabled: true
+    - name: reload the service so that server reads if any changes are done,restart catalogue
+      ansible.builtin.systemd:
+        state: restarted
+        daemon_reload: true
+        name: catalogue
+        enabled: true
  
-  - name: copy mongodb repo file
+    - name: copy mongodb repo file
       ansible.builtin.copy:
         src: mongodb.repo
         dest: /etc/yum.repos.d/mongo.repo
