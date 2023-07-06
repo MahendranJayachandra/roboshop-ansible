@@ -32,4 +32,5 @@
 
     - name: Run the catalogue schema to update the data in mongodb
       community.mongodb.mongodb_shell:
-        file: "mongodb.learnskill.fun/app/schema/catalogue.js"       
+        login_host: mongodb.learnskill.fun
+        file: "/app/schema/catalogue.js"       
