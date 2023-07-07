@@ -30,10 +30,14 @@
         name: mongodb-org-shell
         state: installed
 
-    - name: Run the catalogue schema to update the data in mongodb
-      community.mongodb.mongodb_shell:
-        login_host: mongodb.learnskill.fun
-        mongo_cmd: mongo
-        #quiet: true
-        file: "/app/schema/catalogue.js"
-        #idempotent: yes     
+    # - name: Run the catalogue schema to update the data in mongodb
+    #   community.mongodb.mongodb_shell:
+    #     login_host: mongodb.learnskill.fun
+    #     mongo_cmd: mongo
+    #     #quiet: true
+    #     file: "/app/schema/catalogue.js"
+    #     #idempotent: yes     
+
+    - name: run the catalogue.js schema
+      ansible.builtin.shell:
+        mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
