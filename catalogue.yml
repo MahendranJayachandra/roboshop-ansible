@@ -34,6 +34,6 @@
       community.mongodb.mongodb_shell:
         login_host: mongodb.learnskill.fun
         mongo_cmd: mongo
-        quiet: true
+        #quiet: true
         file: "/app/schema/catalogue.js"
-        idempotent: yes     
+        #idempotent: yes     
