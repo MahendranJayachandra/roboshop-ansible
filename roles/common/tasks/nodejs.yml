@@ -39,4 +39,4 @@
     remote_src: yes
 
 - name: run nodejs dependancy modules for catalogue application
-  ansible.builtin.shell: cd /app;npm install-
+  ansible.builtin.shell: cd /app;npm install
