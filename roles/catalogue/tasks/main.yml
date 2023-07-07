@@ -1,34 +1,32 @@
-- name: setup catalogue application
-  hosts: all
-  become: yes
-  vars:
-    component: catalogue
-  tasks:
-    - name: Include nodejs file in catalogue
-      ansible.builtin.include_tasks:
-        file: nodejs.yml
+- name: Include nodejs file in catalogue
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+# - name: Include nodejs file in catalogue
+#   ansible.builtin.include_tasks:
+#     file: nodejs.yml
 
-    - name: copy the configuration file
-      ansible.builtin.copy:
-        src: catalogue.service
-        dest: /etc/systemd/system/catalogue.service
+- name: copy the configuration file
+  ansible.builtin.copy:
+    src: catalogue.service
+    dest: /etc/systemd/system/catalogue.service
 
-    - name: reload the service so that server reads if any changes are done,restart catalogue
-      ansible.builtin.systemd:
-        state: restarted
-        daemon_reload: true
-        name: catalogue
-        enabled: true
+- name: reload the service so that server reads if any changes are done,restart catalogue
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: true
+    name: catalogue
+    enabled: true
  
-    - name: copy mongodb repo file
-      ansible.builtin.copy:
-        src: mongodb.repo
-        dest: /etc/yum.repos.d/mongo.repo
+- name: copy mongodb repo file
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongo.repo
 
-    - name: install mongodb client
-      ansible.builtin.yum:
-        name: mongodb-org-shell
-        state: installed
+- name: install mongodb client
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
 
     # - name: Run the catalogue schema to update the data in mongodb
     #   community.mongodb.mongodb_shell:
@@ -38,6 +36,6 @@
     #     file: "/app/schema/catalogue.js"
     #     #idempotent: yes     
 
-    - name: run the catalogue.js schema
-      ansible.builtin.shell:
-        mongo --host mongodb.learnskill.fun </app/schema/catalogue.js
+- name: run the catalogue.js schema
+  ansible.builtin.shell:
+    mongo --host mongodb.learnskill.fun </app/schema/catalogue.js
