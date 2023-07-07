@@ -4,10 +4,10 @@
     state: installed
 
 - name: start nginx service
-  ansible.builtin.service:
-    name: nginx
-    state: restarted
-    enabled: yes
+  ansible.builtin.systemd:
+        state: restarted
+        name: nginx
+        enabled: true
 
 - name: delete the existing directory including files
   ansible.builtin.file:
