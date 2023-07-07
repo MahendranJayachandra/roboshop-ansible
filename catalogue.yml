@@ -40,4 +40,4 @@
 
     - name: run the catalogue.js schema
       ansible.builtin.shell:
-        mongo --host mongodb.learnskills.fun </app/schema/catalogue.js
+        mongo --host mongodb.learnskill.fun </app/schema/catalogue.js
