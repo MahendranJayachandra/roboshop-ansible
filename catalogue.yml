@@ -34,5 +34,5 @@
       community.mongodb.mongodb_shell:
         login_host: mongodb.learnskill.fun
         mongo_cmd: mongo
-        quiet: false
+        quiet: true
         file: "/app/schema/catalogue.js"       
