@@ -35,4 +35,5 @@
         login_host: mongodb.learnskill.fun
         mongo_cmd: mongo
         quiet: true
-        file: "/app/schema/catalogue.js"       
+        file: "/app/schema/catalogue.js"
+        idempotent: yes     
