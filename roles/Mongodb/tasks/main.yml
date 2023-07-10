@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-- name: copy mongodb repo file
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: includemongorepofile
-=======
 # - name: copy mongodb repo file
 #   ansible.builtin.copy:
 #     src: mongodb.repo
@@ -12,8 +6,7 @@
 - name: Include nodejs file in catalogue
   ansible.builtin.import_role:
     name: common
-    tasks_from: includemongorepo.yml
->>>>>>> b47b791fefc632db5292e5d8b99041166ab6e3b5
+    tasks_from: includemongorepo
 
 - name: install mongodb
   ansible.builtin.yum:
