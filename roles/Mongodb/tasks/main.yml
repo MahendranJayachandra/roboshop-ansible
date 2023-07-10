@@ -3,7 +3,7 @@
 #     src: mongodb.repo
 #     dest: /etc/yum.repos.d/mongo.repo
 
-- name: Include nodejs file in catalogue
+- name: Include includemongorepo file in mongo
   ansible.builtin.import_role:
     name: common
     tasks_from: includemongorepo.yml
