@@ -1,0 +1,19 @@
+- name: setup nodejs.run nodejs from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: copy service file. run copyservicefile from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: copyservicefile
+
+- name: restart service with daemon-reload. run restartservice from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restartservice
+
+- name: run the cart schema in mongodb. run includemongorepo task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: includemongorepo
