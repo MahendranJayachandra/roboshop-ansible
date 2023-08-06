@@ -1,0 +1,19 @@
+- name: Run nodejs task from role common
+      ansible.builtin.import_role:
+        name: common
+        tasks_from: nodejs
+
+- name: Run a task copyservicefile from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: copyservicefile
+
+- name: Run the task restartservice from role common
+  ansbile.builtin.include_role:
+    name: common
+    tasks_from: restartservice
+
+- name: Run schema in mongodb by running includemongorepo task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: includemongorepo

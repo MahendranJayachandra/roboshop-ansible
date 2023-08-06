@@ -1,0 +1,22 @@
+- name: Install the nginx rpm from a remote repo
+  ansible.builtin.yum:
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    state: present
+    enablerepo: remi-6.2
+
+- name: Install the redis 6.2
+  ansible.builtin.yum:
+    name: redis
+    state: installed
+
+- name: Replace old hostname with new hostname
+  ansible.builtin.replace:
+    path: /etc/redis.conf,/etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+    
+- name: Restart service httpd, in all cases
+  ansible.builtin.service:
+    name: redis
+    state: restarted
+    enabled: yes

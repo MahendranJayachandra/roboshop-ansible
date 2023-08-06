@@ -6,36 +6,40 @@
 #   ansible.builtin.include_tasks:
 #     file: nodejs.yml
 
-- name: copy the configuration file
-  ansible.builtin.copy:
-    src: catalogue.service
-    dest: /etc/systemd/system/catalogue.service
+- name: copy service file
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: copyservicefile
 
-- name: reload the service so that server reads if any changes are done,restart catalogue
-  ansible.builtin.systemd:
-    state: restarted
-    daemon_reload: true
-    name: catalogue
-    enabled: true
+- name: Include nodejs file in catalogue
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restartservice
+# - name: reload the service so that server reads if any changes are done,restart catalogue
+#   ansible.builtin.systemd:
+#     state: restarted
+#     daemon_reload: true
+#     name: catalogue
+#     enabled: true
  
 - name: copy mongodb repo file
   ansible.builtin.include_role:
     name: common
     tasks_from: includemongorepo
 
-- name: install mongodb client
-  ansible.builtin.yum:
-    name: mongodb-org-shell
-    state: installed
+# - name: install mongodb client
+#   ansible.builtin.yum:
+#     name: mongodb-org-shell
+#     state: installed
 
-    # - name: Run the catalogue schema to update the data in mongodb
-    #   community.mongodb.mongodb_shell:
-    #     login_host: mongodb.learnskill.fun
-    #     mongo_cmd: mongo
-    #     #quiet: true
-    #     file: "/app/schema/catalogue.js"
-    #     #idempotent: yes     
+#     # - name: Run the catalogue schema to update the data in mongodb
+#     #   community.mongodb.mongodb_shell:
+#     #     login_host: mongodb.learnskill.fun
+#     #     mongo_cmd: mongo
+#     #     #quiet: true
+#     #     file: "/app/schema/catalogue.js"
+#     #     #idempotent: yes     
 
-- name: run the catalogue.js schema
-  ansible.builtin.shell:
-    mongo --host mongodb-dev.learnskill.fun </app/schema/catalogue.js
+# - name: run the catalogue.js schema
+#   ansible.builtin.shell:
+#     mongo --host mongodb-dev.learnskill.fun </app/schema/catalogue.js
