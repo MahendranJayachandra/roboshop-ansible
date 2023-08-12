@@ -2,5 +2,5 @@
   ansible.builtin.systemd:
     state: restarted
     daemon_reload: true
-    name: {{component}}
+    name: "{{component}}"
     enabled: true
