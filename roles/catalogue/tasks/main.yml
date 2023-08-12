@@ -27,10 +27,10 @@
     name: common
     tasks_from: includemongorepo
 
--name: run the mongodb schema
- ansible.builtin.include_role:
-  name: common
-  tasks_from: runmongoschema
+- name: run the mongodb schema
+  ansible.builtin.include_role:
+   name: common
+   tasks_from: runmongoschema
 
 # - name: install mongodb client
 #   ansible.builtin.yum:
