@@ -1,0 +1,23 @@
+- name: install golang
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: add user roboshop. run addroboshop user tasks from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: addroboshopuser
+
+- name: download and install dispatch appl.run downloadandextractapplication task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: downloadandextractapplication
+
+- name: install the dependancies for dispatch application
+  ansible.builtin.shell: go mod init dispatch, go get, go dispatch
+  chdir: /app
+
+- name: reload,enable and restart systemd service. run restartservice task from role common.
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restartservice

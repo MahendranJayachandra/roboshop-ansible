@@ -1,0 +1,33 @@
+- name: run the rabbitmq erlang repo and rabbitmq server repo in shell
+  ansible.builtin.shell:
+    curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash,
+    curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+
+# - name: Install the erlang rpm from a remote repo
+#   ansible.builtin.yum:
+#     name: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
+#     state: present
+
+- name: install the rabbitmq server
+  ansible.builtin.yum:
+    name: rabbitmq-server
+    state: installed
+
+- name: enable and start rabbitmq service
+  ansible.builtin.systemd:
+    enabled: true
+    state: restarted
+    name: rabbitmq-server
+
+- name: |-
+    Add user to server and assign full access control on / vhost.
+    The user doesn't have permission rules for other vhosts
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    permissions:
+      - vhost: /
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+    state: present

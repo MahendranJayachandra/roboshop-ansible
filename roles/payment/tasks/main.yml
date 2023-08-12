@@ -1,0 +1,28 @@
+- name: install python and its dependencies
+  ansible.builtin.yum:
+    name: python36,gcc,python3-devel
+    state: installed
+
+- name: add user roboshop.run addroboshopuser task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: addroboshopuser
+
+- name: download and extract payment appl. run downloadandextractapplication task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: downloadandextractapplication
+
+- name: install the application dependancies
+  ansible.builtin.shell: pip3.6 install -r requirements.txt
+  chdir: /app 
+
+- name: copy payment.service file in systemd/system directory.Run copyservicefile task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: copyservicefile
+
+- name: reload the service files,enable and start service.Run restartservice tasks from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restartservice

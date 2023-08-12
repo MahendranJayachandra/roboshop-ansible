@@ -1,0 +1,42 @@
+- name: install maven
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+- name: add roboshop user by running addroboshopuser tasks in common role 
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: addroboshopuser
+
+- name: create the directory '/app'.download and extract appl.Run the downloadandextractapplication task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: downloadandextractapplication
+
+- name: install the dependencies.
+  ansible.builtin.shell: mvn clean package;mv target/shipping-1.0.jar shipping.jar
+  chdir: /app
+
+- name: copy the systemd service file
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: copyservicefile
+
+- name: run daemon-reload. enable and start servie
+  ansible.buitin.include_role:
+    name: common
+    tasks_from: restartservice
+
+- name: install mysql
+  ansible.builtin.yum:
+    name: mysql
+    state: installed
+
+- name: load schema shipping.sql
+  ansible.builtin.shell: mysql -h mysql-dev.learnskill.fun -uroot -pRoboShop@1 < /app/schema/{{component}}.sql
+
+- name: restart shipping service so that it works properly
+  ansible.builtin.systemd:
+    name: {{component}}
+    state: restarted
+

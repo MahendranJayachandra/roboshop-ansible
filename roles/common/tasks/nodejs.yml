@@ -23,20 +23,15 @@
       name: nodejs
       state: installed
 
-- name: create roboshop user
-  ansible.builtin.user:
-    name: roboshop
+- name: create roboshop user by running addroboshopuser in role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: addroboshopuser
 
-- name: Create a directory if it does not exist
-  ansible.builtin.file:
-    path: /app
-    state: directory
-
-- name: download and extract application
-  ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
-    dest: /app
-    remote_src: yes
+- name: Create a directory '/app',download and unzip application.Run the downloadandextractapplication task in role common 
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: downloadandextractapplication
 
 - name: run nodejs dependancy modules for catalogue application
   ansible.builtin.shell: npm install

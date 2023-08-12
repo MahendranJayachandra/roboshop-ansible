@@ -1,0 +1,10 @@
+- name: create a directory if it does not exist
+  ansible.builtin.file:
+    name: /app
+    state: directory
+  
+- name: download and extract application
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
+    dest: /app
+    remote_src: yes
