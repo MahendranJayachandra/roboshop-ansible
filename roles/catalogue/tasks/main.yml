@@ -11,7 +11,7 @@
     name: common
     tasks_from: copyservicefile
 
-- name: Include nodejs file in catalogue
+- name: start the catalogue service.
   ansible.builtin.include_role:
     name: common
     tasks_from: restartservice

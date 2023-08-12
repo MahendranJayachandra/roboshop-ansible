@@ -1,6 +1,6 @@
 - name: Restart service, in all cases, also issue daemon-reload to pick up config changes
   ansible.builtin.systemd:
-    state: restarted
-    daemon_reload: true
     name: "{{component}}.service"
+    daemon_reload: true
     enabled: true
+    state: restarted
