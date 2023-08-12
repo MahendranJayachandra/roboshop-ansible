@@ -3,12 +3,3 @@
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongo.repo
 
-- name: install mongo shell
-  ansible.builtin.yum:
-    name: mongodb-org-shell
-    state: installed
-
-- name: run the schema
-  ansible.builtin.shell:
-    mongo --host mongodb-dev.learnskill.fun </app/schema/{{component}}.js
-
