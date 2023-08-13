@@ -1,8 +1,9 @@
-- name: Install the nginx rpm from a remote repo
+- name: Install the redis rpm from a remote repo
   ansible.builtin.yum:
     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: present
     enablerepo: remi-6.2
+    disable_gpg_check: true
 
 - name: Install the redis 6.2
   ansible.builtin.yum:
@@ -15,7 +16,7 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
     
-- name: Restart service httpd, in all cases
+- name: Enable and start service redis
   ansible.builtin.service:
     name: redis
     state: restarted
