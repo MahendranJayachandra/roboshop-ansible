@@ -9,7 +9,7 @@
     tasks_from: copyservicefile
 
 - name: Run the task restartservice from role common
-  ansbile.builtin.include_role:
+  ansible.builtin.include_role:
     name: common
     tasks_from: restartservice
 
