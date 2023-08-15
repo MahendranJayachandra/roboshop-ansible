@@ -24,7 +24,7 @@
     tasks_from: copyservicefile
 
 - name: run daemon-reload. enable and start servie
-  ansible.buitin.include_role:
+  ansible.builtin.include_role:
     name: common
     tasks_from: restartservice
 
