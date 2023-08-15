@@ -22,6 +22,11 @@
     chdir: /app
   ignore_errors: true
 
+- name: copy the dispatch.service file to the dispatch server systemd.Run copyservicefile task from role common
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: copyservicefile
+
 - name: reload,enable and restart systemd service. run restartservice task from role common.
   ansible.builtin.include_role:
     name: common
