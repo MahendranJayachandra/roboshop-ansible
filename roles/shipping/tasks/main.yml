@@ -15,7 +15,7 @@
 
 - name: install the dependencies.
   ansible.builtin.shell: mvn clean package;mv target/shipping-1.0.jar shipping.jar
-  chdir: /app
+    chdir: /app
 
 - name: copy the systemd service file
   ansible.builtin.include_role:
