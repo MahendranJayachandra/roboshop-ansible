@@ -18,15 +18,15 @@
     enabled: true
     state: restarted
 
-- name: Set MySQL root Password
-  community.mysql.mysql_user:
-#     host: mysql
-#     login_user: 'root'
-#     login_password: ''
-    host: mysql_secure_installation
-    name: root
-    password: RoboShop@1
-    state: present
+# - name: Set MySQL root Password
+#   mysql_user:
+# #     host: mysql
+# #     login_user: 'root'
+# #     login_password: ''
+#     host: mysql_secure_installation
+#     name: root
+#     password: RoboShop@1
+#     state: present
 
-# - name: Change mysql root password
-#  ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1
+- name: Change mysql root password
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1
