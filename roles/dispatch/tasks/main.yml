@@ -20,6 +20,7 @@
     go dispatch
   args:
     chdir: /app
+  ignore_errors: true
 
 - name: reload,enable and restart systemd service. run restartservice task from role common.
   ansible.builtin.include_role:
