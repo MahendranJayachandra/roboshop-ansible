@@ -1,6 +1,6 @@
 - name: run the rabbitmq erlang repo and rabbitmq server repo in shell
   ansible.builtin.shell: |
-    curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
+    curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh;
     curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
   args:
     executable: /bin/bash
