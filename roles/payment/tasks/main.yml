@@ -15,7 +15,8 @@
 
 - name: install the application dependancies
   ansible.builtin.shell: pip3.6 install -r requirements.txt
-  chdir: /app 
+  args:
+    chdir: /app 
 
 - name: copy payment.service file in systemd/system directory.Run copyservicefile task from role common
   ansible.builtin.include_role:

@@ -17,7 +17,7 @@
     dest: /tmp/erlang.sh
     mode: 'u+rwx'
 
-- name: Run the install script
+- name: Run the erlang script
   ansible.builtin.shell: /tmp/erlang.sh
 
 - name: Download rabbitmq-server package
@@ -26,7 +26,7 @@
     dest: /tmp/rabbitmq-server.sh
     mode: 'u+rwx'
 
-- name: Run the install script
+- name: Run the rabbitmq-server script
   ansible.builtin.shell: /tmp/rabbitmq-server.sh
 
 # - name: Install the erlang rpm from a remote repo
