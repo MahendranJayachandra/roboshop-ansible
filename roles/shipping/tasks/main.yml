@@ -37,6 +37,6 @@
 
 - name: restart shipping service so that it works properly
   ansible.builtin.systemd:
-    name: {{component}}
+    name: '{{component}}'
     state: restarted
 
