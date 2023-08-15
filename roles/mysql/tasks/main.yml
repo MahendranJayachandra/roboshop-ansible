@@ -19,10 +19,10 @@
     state: restarted
 
 - name: Set MySQL root Password
-  mysql_user:
-    login_host: 'localhost'
-    login_user: 'root'
-    login_password: ''
+  community.mysql.mysql_user:
+    host: 'localhost'
+    #login_user: 'root'
+    #login_password: ''
     name: 'root'
     password: 'RoboShop@1'
-    state: present
+    #state: present
