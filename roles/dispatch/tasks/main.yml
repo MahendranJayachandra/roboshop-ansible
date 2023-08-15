@@ -14,8 +14,9 @@
     tasks_from: downloadandextractapplication
 
 - name: install the dependancies for dispatch application
-  ansible.builtin.shell: go mod init dispatch, go get, go dispatch
-  chdir: /app
+  ansible.builtin.shell: go mod init dispatch;go get;go dispatch
+  args:
+    chdir: /app
 
 - name: reload,enable and restart systemd service. run restartservice task from role common.
   ansible.builtin.include_role:
