@@ -10,15 +10,15 @@
 #     name: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
 #     state: present
 
-- name: run the rabbitmq erlang repo
-  ansible.builtin.yum:
-    name: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm
-    state: installed
+# - name: run the rabbitmq erlang repo
+#   ansible.builtin.yum:
+#     name: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm
+#     state: installed
 
-- name: install the rabbitmq server repo
-  ansible.builtin.yum:
-    name: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm
-    state: installed
+# - name: install the rabbitmq server repo
+#   ansible.builtin.yum:
+#     name: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm
+#     state: installed
 
 - name: install the rabbitmq server
   ansible.builtin.yum:
