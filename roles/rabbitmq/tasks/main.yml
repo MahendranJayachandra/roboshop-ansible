@@ -1,9 +1,33 @@
-- name: run the rabbitmq erlang repo and rabbitmq server repo in shell
-  ansible.builtin.shell: |
-    curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh;
-    curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
-  args:
-    executable: /bin/bash
+# - name: run the rabbitmq erlang repo and rabbitmq server repo in shell
+#   ansible.builtin.shell: |
+#     curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh;
+#     curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
+#   args:
+#     executable: /bin/bash
+
+# - name: Add repository
+#   ansible.builtin.yum_repository:
+#     name: erlang
+#     description: erlang yum repo
+#     baseurl: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm
+
+- name: Download erlang package
+  ansible.builtin.get_url:
+    url: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
+    dest: /tmp/erlang.sh
+    mode: 'u+rwx'
+
+- name: Run the install script
+  ansible.builtin.shell: /tmp/erlang.sh
+
+- name: Download rabbitmq-server package
+  ansible.builtin.get_url:
+    url: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
+    dest: /tmp/rabbitmq-server.sh
+    mode: 'u+rwx'
+
+- name: Run the install script
+  ansible.builtin.shell: /tmp/rabbitmq-server.sh
 
 # - name: Install the erlang rpm from a remote repo
 #   ansible.builtin.yum:
