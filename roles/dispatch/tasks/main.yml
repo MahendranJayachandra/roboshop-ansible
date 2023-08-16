@@ -17,7 +17,7 @@
   ansible.builtin.shell: |
     go mod init dispatch
     go get
-    go dispatch
+    go build
   args:
     chdir: /app
   ignore_errors: true
