@@ -6,10 +6,15 @@
 #   ansible.builtin.include_tasks:
 #     file: nodejs.yml
 
+# - name: copy service file
+#   ansible.builtin.include_role:
+#     name: common
+#     tasks_from: copyservicefile
 - name: copy service file
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: copyservicefile
+  ansible.builtin.template:
+    src: "{{component}}.service"
+    dest: /etc/systemd/system
+
 
 - name: start the catalogue service.
   ansible.builtin.include_role:
